@@ -9,14 +9,14 @@ A generative screensaver in the look of the kappa.yashi vector-console clips: am
 - `index.html` — the whole scene (WebGL2, one file, JetBrains Mono embedded). Open it in a browser to preview: `F` fullscreen, `M` next scene, `P` palette, `C` CRT on/off, `Space` pause.
 - `settings.html` — the settings window (palette, scenes, frame rate, quality, CRT look) with a live preview.
 - `host/` — the tiny native app (Rust: `tao` + `wry`) that turns the page into a real screensaver. It opens one borderless window per monitor, any key / click / real mouse movement quits, and it stores your settings in `settings.json` next to the WebView profile (`%LOCALAPPDATA%\kappayashi-saver` on Windows, `~/.local/share/kappayashi-saver` on Linux).
-- `github-workflow-build.yml` — the GitHub Actions workflow (goes to `.github/workflows/build.yml` in the repo) that builds the Windows `.scr` and the Linux binary on GitHub's servers.
+- `.github/workflows/build.yml` — the GitHub Actions workflow that builds the Windows `.scr` and the Linux binary on GitHub's servers.
 
 ## Get the Windows .scr
 
 You don't need Rust on your PC.
 
-1. Make a public repo `kappa-yashi/idle-vector_scrnsvr` (no README, .gitignore or licence added by GitHub) and upload everything in this folder except `github-workflow-build.yml` and the `linux/` folder (the ready-made Linux build — it doesn't belong in the repo).
-2. In the repo press **Add file → Create new file**, type `.github/workflows/build.yml` as the name (typing the slashes makes the folders), paste the contents of `github-workflow-build.yml` and commit. That file is shipped under a neutral name here; in the repo it has to live at that path.
+1. Fork or copy this repo (it already contains the workflow).
+2. Make sure Actions are enabled in the repo.
 3. Open the **Actions** tab → **build** → **Run workflow** (Windows only by default; tick *linux* to add the Linux build). It takes ~5 minutes. The workflow never runs on its own when you commit, only when you press the button or push a `v*` tag.
 4. Open the finished run → **Artifacts** → download `kappayashi-saver-windows` → it contains `kappa.yashi.scr` and `kappayashi-saver.exe`.
 
