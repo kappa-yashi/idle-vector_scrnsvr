@@ -47,10 +47,29 @@ const sstep = (a, b, x) => { x = clamp((x - a) / (b - a)); return x * x * (3 - 2
 const easeOut = x => 1 - Math.pow(1 - clamp(x), 3);
 const TAU = Math.PI * 2;
 
+// Colour sets. amber/kappa are the saver's own; the rest are the kappayashi.page site themes
+// (src/config/themes.ts): main = primary, hot = text, alt = an accent, dim = dim, bg = page background.
+const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255);
+const norm = c => { const m = Math.max(...c, 1e-3); return c.map(v => v / m); };      // full brightness, same hue
+const mixW = (c, t) => c.map(v => v + (1 - v) * t);
+const theme = (main, hot, alt, dim, bg) => {
+  const M = norm(hex(main)), H = norm(M.map((v, i) => v + (hex(hot)[i] - v) * .45));  // hot = main pushed toward the text colour
+  return { main: M, hot: H, alt: norm(hex(alt)), dim: hex(dim), brand: hex(main), bg: hex(bg).map(v => v * .6), pale: mixW(H, .45) };
+};
 const PALETTES = {
   amber: { main: [1.00, 0.60, 0.20], hot: [1.00, 0.84, 0.52], alt: [0.42, 1.00, 0.52], dim: [0.60, 0.36, 0.12] },
   kappa: { main: [0.80, 0.13, 0.13], hot: [1.00, 0.34, 0.28], alt: [0.72, 0.67, 0.56], dim: [0.46, 0.10, 0.10] },
+  'green':         theme('#00ff66', '#66ff99', '#00ffcc', '#00aa44', '#0a120b'),   // Phosphor Green
+  'dracula':       theme('#bd93f9', '#d6bbfb', '#ff79c6', '#9175cc', '#110e1b'),   // Dracula Synth
+  'mono':          theme('#eeeeee', '#ffffff', '#00e5ff', '#888888', '#0f0f0f'),   // Monochrome
+  'nord':          theme('#88c0d0', '#d8dee9', '#ebcb8b', '#98a2b7', '#2e3440'),   // Nord
+  'tokyo-night':   theme('#7aa2f7', '#c0caf5', '#9ece6a', '#7982a9', '#1a1b26'),   // Tokyo Night
+  'tokyo-storm':   theme('#7aa2f7', '#c0caf5', '#e0af68', '#8c94bc', '#24283b'),   // Tokyo Night Storm
+  'gruvbox-dark':  theme('#fe8019', '#fabd2f', '#b8bb26', '#a89984', '#282828'),   // Gruvbox Dark
+  'electron-dark': theme('#6b75ff', '#ffffff', '#d9d9d9', '#a19dcd', '#121212'),   // Electron Dark
+  'emerald':       theme('#00a313', '#d3e1c1', '#dd4646', '#8b867b', '#111111'),   // Emerald
 };
+for (const k in PALETTES) { const P = PALETTES[k]; P.bg ||= [0, 0, 0]; P.pale ||= [1, .88, .68]; P.brand ||= [.84, .22, .22]; }
 let palName = PALETTES[pick('palette', 'amber')] ? pick('palette', 'amber') : 'amber';
 let pal = PALETTES[palName];
 
@@ -208,7 +227,7 @@ void main(){
 const CRT_FS = `#version 300 es
 precision highp float; in vec2 vUV; out vec4 o;
 uniform sampler2D uBase, uB1, uB2, uB3;
-uniform vec2 uRes; uniform float uTime, uGlitch, uCurv, uBloom, uCrt;
+uniform vec2 uRes; uniform float uTime, uGlitch, uCurv, uBloom, uCrt; uniform vec3 uBg, uPale;
 float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
 void main(){
   vec2 p = vUV * 2. - 1.;
@@ -231,7 +250,8 @@ void main(){
   hdr *= fl * roll * (1. + uGlitch * .8);
   vec3 m = 1. - exp(-hdr * 1.35);
   float l = dot(m, vec3(.30, .59, .11));
-  m += vec3(1., .88, .68) * pow(l, 3.) * .12;                       // hot cores go pale
+  m += uPale * pow(l, 3.) * .12;                                    // hot cores go pale
+  m += uBg * (1. - m);                                              // theme background (screen blend)
   float period = clamp(uRes.y / 540., 2., 4.);
   float sl = .5 + .5 * cos(gl_FragCoord.y * 6.28318 / period);
   m *= mix(1., .80 + .20 * sl, uCrt);
@@ -579,7 +599,7 @@ function drawHUD() {
   hx.textBaseline = 'alphabetic';
   const f = px => `${(px * u).toFixed(1)}px ${FONT}`;
   // brand corner — always there
-  hx.font = f(19); hx.fillStyle = 'rgba(214,56,56,.92)'; hx.fillText('kappa.yashi', .095 * W, .085 * H);
+  hx.font = f(19); hx.fillStyle = css(C.brand, .92); hx.fillText('kappa.yashi', .095 * W, .085 * H);
   hx.font = f(15); hx.fillStyle = css(C.dim, .95); hx.fillText('河童 野史  ·  underground fanzine', .095 * W, .085 * H + 22 * u);
   if (S.mode === 'nav') {
     hx.fillStyle = css(C.main, .85); hx.font = f(13);
@@ -677,6 +697,7 @@ function render(dt) {
   gl.uniform1i(U.uBase, 0); gl.uniform1i(U.uB1, 1); gl.uniform1i(U.uB2, 2); gl.uniform1i(U.uB3, 3);
   gl.uniform2f(U.uRes, CW, CH); gl.uniform1f(U.uTime, S.t); gl.uniform1f(U.uGlitch, S.glitch);
   gl.uniform1f(U.uCurv, crtOn ? .11 : 0); gl.uniform1f(U.uBloom, .42); gl.uniform1f(U.uCrt, crtOn ? 1 : 0);
+  gl.uniform3fv(U.uBg, pal.bg); gl.uniform3fv(U.uPale, pal.pale);
   fsq(null, CW, CH);
 }
 

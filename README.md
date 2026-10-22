@@ -6,8 +6,8 @@ A generative screensaver in the look of the kappa.yashi vector-console clips: am
 
 > **Disclaimer — free software, use at your own risk.** This is a free personal project, provided "as is" with no warranty of any kind. kappa.yashi and its author(s) accept no responsibility or liability, to the fullest extent the law allows, for anything that results from downloading, installing or using it (data loss, hardware or driver problems, overheating, power use, screen burn-in …). It is **not a security tool** and does not lock your computer. It contains **flickering and flashing effects** — don't use it if you are sensitive to those, or switch "crt look" off. Full text in English and Greek: [DISCLAIMER.md](DISCLAIMER.md). / *Δωρεάν λογισμικό, χρήση με δική σου ευθύνη — δες το DISCLAIMER.md.*
 
-- `index.html` — the whole scene (WebGL2, one file, JetBrains Mono embedded). Open it in a browser to preview: `F` fullscreen, `M` next scene, `P` palette, `C` CRT on/off, `Space` pause.
-- `settings.html` — the settings window (palette, scenes, frame rate, quality, CRT look) with a live preview.
+- `index.html` — the whole scene (WebGL2, one file, JetBrains Mono embedded). Open it in a browser to preview: `F` fullscreen, `M` next scene, `P` next colour set, `C` CRT on/off, `Space` pause.
+- `settings.html` — the settings window (colours, scenes, frame rate, quality, CRT look) with a live preview.
 - `host/` — the tiny native app (Rust: `tao` + `wry`) that turns the page into a real screensaver. It opens one borderless window per monitor, any key / click / real mouse movement quits, and it stores your settings in `settings.json` next to the WebView profile (`%LOCALAPPDATA%\kappayashi-saver` on Windows, `~/.local/share/kappayashi-saver` on Linux).
 - `.github/workflows/build.yml` — the GitHub Actions workflow that builds the Windows `.scr` and the Linux binary on GitHub's servers.
 
@@ -65,8 +65,12 @@ Linux has no common screensaver API, so something has to start it when you go id
 - Verified on Windows 11: install, settings window, fullscreen saver, exit on input. Not verified yet: Windows 10, real Linux desktops (X11 and Wayland), multi-monitor.
 - macOS isn't covered: a real `.saver` with a WebView is unreliable on recent macOS — see the project notes.
 
+## Colours
+
+`amber` (default, like the original clips) and `kappa` (brand red + bone), plus the dark themes of [kappayashi.page](https://kappayashi.page): Phosphor Green, Dracula Synth, Monochrome, Nord, Tokyo Night, Tokyo Night Storm, Gruvbox Dark, Electron Dark, Emerald. Pick one in the settings window. Theme credits: Nord, Tokyo Night and Gruvbox are MIT-licensed colour schemes by their authors; Phosphor Green, Dracula Synth and Monochrome come from the Retro TUI Portfolio template (MIT, © Nivin).
+
 ## Page options (URL parameters)
 
-`?palette=amber|kappa` · `?scene=both|nav|storm` · `?fps=30|60` · `?h=720|1080|1440` (internal render height) · `?crt=0` · `?seed=N`. They override the saved settings; `?saver=1` and `?embed=1` are used by the host and the settings preview.
+`?palette=amber|kappa|green|dracula|mono|nord|tokyo-night|tokyo-storm|gruvbox-dark|electron-dark|emerald` · `?scene=both|nav|storm` · `?fps=30|60` · `?h=720|1080|1440` (internal render height) · `?crt=0` · `?seed=N`. They override the saved settings; `?saver=1` and `?embed=1` are used by the host and the settings preview.
 
 Licence: not decided yet (see also [DISCLAIMER.md](DISCLAIMER.md)).

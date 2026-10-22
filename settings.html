@@ -33,6 +33,9 @@ button:hover{background:var(--red);color:#111}
 .disc summary::before{content:"+ ";color:var(--red)}
 .disc[open] summary::before{content:"– "}
 .disc p{margin:8px 0 0}
+select{font:inherit;color:var(--fg);background:#111;border:1px solid var(--line);padding:3px 8px;min-width:240px;cursor:pointer}
+select:focus-visible{outline:1px solid var(--fg);outline-offset:2px}
+select:hover{border-color:var(--red)}
 #st{opacity:0;transition:opacity .4s;color:var(--dim)}
 #st.on{opacity:1}
 </style>
@@ -57,7 +60,9 @@ button:hover{background:var(--red);color:#111}
   const KEY = 'kySaver';
   const DEF = { palette: 'amber', scene: 'both', fps: '30', h: '1080', crt: '1' };
   const GROUPS = [
-    ['palette', 'colours',    [['amber', 'amber + green'], ['kappa', 'kappa red + bone']]],
+    ['palette', 'colours',    [['amber', 'amber + green'], ['kappa', 'kappa red + bone'], ['green', 'phosphor green'], ['dracula', 'dracula synth'],
+                               ['mono', 'monochrome'], ['nord', 'nord'], ['tokyo-night', 'tokyo night'], ['tokyo-storm', 'tokyo night storm'],
+                               ['gruvbox-dark', 'gruvbox dark'], ['electron-dark', 'electron dark'], ['emerald', 'emerald']], 'select'],
     ['scene',   'scenes',     [['both', 'both'], ['nav', 'console'], ['storm', 'vector storm']]],
     ['fps',     'frame rate', [['30', '30 fps (cooler)'], ['60', '60 fps']]],
     ['h',       'quality',    [['720', '720p'], ['1080', '1080p'], ['1440', '1440p']]],
@@ -72,21 +77,29 @@ button:hover{background:var(--red);color:#111}
   const pv = document.getElementById('pv'), st = document.getElementById('st');
   const preview = () => { pv.src = 'index.html?embed=1&seed=11&' + new URLSearchParams(cfg).toString(); };
   const rows = document.getElementById('rows');
-  for (const [key, label, opts] of GROUPS) {
+  const save = () => {
+    try { localStorage.setItem(KEY, JSON.stringify(cfg)); } catch (e) {}
+    if (IPC) IPC('save ' + JSON.stringify(cfg));
+    st.classList.add('on'); clearTimeout(st._t); st._t = setTimeout(() => st.classList.remove('on'), 1400);
+    preview();
+  };
+  for (const [key, label, opts, kind] of GROUPS) {
     const row = document.createElement('div'); row.className = 'row';
+    if (kind === 'select') {
+      row.innerHTML = '<span>' + label + '</span><select name="' + key + '" aria-label="' + label + '"></select>';
+      const sel = row.querySelector('select');
+      for (const [val, text] of opts) { const o = new Option(text, val, false, cfg[key] === val); sel.add(o); }
+      if (!opts.some(o => o[0] === cfg[key])) sel.value = DEF[key];
+      sel.addEventListener('change', () => { cfg[key] = sel.value; save(); });
+      rows.appendChild(row); continue;
+    }
     row.innerHTML = '<span>' + label + '</span><div class="seg"></div>';
     const seg = row.querySelector('.seg');
     for (const [val, text] of opts) {
       const l = document.createElement('label');
       l.innerHTML = '<input type="radio" name="' + key + '" value="' + val + '"><i>' + text + '</i>';
       const input = l.querySelector('input'); input.checked = cfg[key] === val;
-      input.addEventListener('change', () => {
-        cfg[key] = val;
-        try { localStorage.setItem(KEY, JSON.stringify(cfg)); } catch (e) {}
-        if (IPC) IPC('save ' + JSON.stringify(cfg));
-        st.classList.add('on'); clearTimeout(st._t); st._t = setTimeout(() => st.classList.remove('on'), 1400);
-        preview();
-      });
+      input.addEventListener('change', () => { cfg[key] = val; save(); });
       seg.appendChild(l);
     }
     rows.appendChild(row);
