@@ -1,0 +1,17 @@
+[package]
+name = "kappayashi-saver"
+version = "0.1.0"
+edition = "2021"
+description = "kappa.yashi vector screensaver host (WebView2 on Windows, WebKitGTK on Linux)"
+
+[dependencies]
+tao = "0.37"
+wry = "0.57"
+serde_json = "1"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

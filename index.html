@@ -1,0 +1,741 @@
+<!doctype html>
+<!-- kappa.yashi vector saver. Free, provided "as is", without warranty of any kind; use at your own risk — see DISCLAIMER.md. Not a security tool: it does not lock your computer. Contains flickering/flashing effects. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>kappa.yashi — vector saver</title>
+<style>
+@font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;src:url(data:font/woff2;base64,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) format("woff2")}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
+body.idle{cursor:none}
+#hint{position:fixed;left:0;right:0;bottom:18px;text-align:center;font:12px "JetBrains Mono",monospace;color:#c83637;opacity:0;transition:opacity .6s;pointer-events:none;letter-spacing:.04em}
+#hint.on{opacity:.85}
+#err{position:fixed;inset:0;display:none;align-items:center;justify-content:center;color:#c83637;font:14px "JetBrains Mono",monospace;text-align:center;padding:24px}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hint">F fullscreen · M next scene · P palette · C crt on/off</div>
+<div id="err">WebGL2 is required for this screensaver.</div>
+<script>
+(() => {
+'use strict';
+
+/* ───────────────────────── config / helpers ───────────────────────── */
+const q = new URLSearchParams(location.search);
+const SAVER  = q.has('saver');                         // wrapper passes ?saver=1 → no hint, cursor hidden, any input exits
+const EMBED  = q.has('embed');                         // preview inside the settings window: no hint, no keys, no exit
+const MANUAL = q.has('manual');                        // test hook: external stepping
+let cfg = {};                                          // saved by the settings window: the native host injects window.__KY_CFG
+try { cfg = JSON.parse(localStorage.getItem('kySaver') || '{}') || {}; } catch (e) { cfg = {}; }   // browser-only fallback
+if (window.__KY_CFG && typeof window.__KY_CFG === 'object') cfg = Object.assign({}, cfg, window.__KY_CFG);
+const pick = (k, d) => q.has(k) ? q.get(k) : (cfg[k] != null ? String(cfg[k]) : d);
+const TARGET_H = Math.max(360, +pick('h', 1080) || 1080);   // internal render height cap
+const FPS = Math.min(120, Math.max(10, +pick('fps', 30) || 30)); // 30 = easy on batteries / fans
+const SCENE = ['nav', 'storm'].includes(pick('scene', 'both')) ? pick('scene', 'both') : 'both';
+let   crtOn = pick('crt', '1') !== '0';
+const IPC = (window.ipc && typeof window.ipc.postMessage === 'function') ? m => { try { window.ipc.postMessage(m); } catch (e) {} } : null;
+const seed = q.has('seed') ? (+q.get('seed') >>> 0) : ((Math.random() * 4294967296) >>> 0);
+const rnd = (a => () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a);
+  t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; })(seed);
+const R = (a, b) => a + (b - a) * rnd();
+const clamp = (x, a = 0, b = 1) => x < a ? a : x > b ? b : x;
+const lerp = (a, b, t) => a + (b - a) * t;
+const sstep = (a, b, x) => { x = clamp((x - a) / (b - a)); return x * x * (3 - 2 * x); };
+const easeOut = x => 1 - Math.pow(1 - clamp(x), 3);
+const TAU = Math.PI * 2;
+
+const PALETTES = {
+  amber: { main: [1.00, 0.60, 0.20], hot: [1.00, 0.84, 0.52], alt: [0.42, 1.00, 0.52], dim: [0.60, 0.36, 0.12] },
+  kappa: { main: [0.80, 0.13, 0.13], hot: [1.00, 0.34, 0.28], alt: [0.72, 0.67, 0.56], dim: [0.46, 0.10, 0.10] },
+};
+let palName = PALETTES[pick('palette', 'amber')] ? pick('palette', 'amber') : 'amber';
+let pal = PALETTES[palName];
+
+/* ───────────────────────── WebGL setup ───────────────────────── */
+const canvas = document.getElementById('c');
+const gl = canvas.getContext('webgl2', { antialias: false, alpha: false, powerPreference: 'high-performance', preserveDrawingBuffer: MANUAL });
+if (!gl) { document.getElementById('err').style.display = 'flex'; if (IPC) IPC('log no-webgl2'); return; }
+
+let FMT = { internal: gl.RGBA8, type: gl.UNSIGNED_BYTE };
+if (gl.getExtension('EXT_color_buffer_float') || gl.getExtension('EXT_color_buffer_half_float')) {
+  FMT = { internal: gl.RGBA16F, type: gl.HALF_FLOAT };
+}
+gl.getExtension('OES_texture_float_linear');
+
+function mkProg(vs, fs) {
+  const p = gl.createProgram();
+  for (const [t, src] of [[gl.VERTEX_SHADER, vs], [gl.FRAGMENT_SHADER, fs]]) {
+    const s = gl.createShader(t); gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+    gl.attachShader(p, s);
+  }
+  gl.linkProgram(p);
+  if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+  p.U = {};
+  for (let i = 0, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS); i < n; i++) {
+    const info = gl.getActiveUniform(p, i); p.U[info.name] = gl.getUniformLocation(p, info.name);
+  }
+  return p;
+}
+
+/* — shared fragment for every vector line: a capsule SDF with a faint halo — */
+const CAPSULE_FS = `#version 300 es
+precision highp float;
+in vec2 vST; in float vLen; in float vR; in vec3 vCol;
+out vec4 o;
+void main(){
+  float dx = vST.x < 0. ? vST.x : (vST.x > vLen ? vST.x - vLen : 0.);
+  float d  = length(vec2(dx, vST.y));
+  float core = 1. - smoothstep(vR - .8, vR + .8, d);
+  float halo = exp(-max(d - vR, 0.) / (vR * .9 + 1.2)) * .14;
+  o = vec4(vCol * (core + halo), 1.);
+}`;
+
+/* — generic batch of capsules (arrows, cubes, rings, stars…) — */
+const BATCH_VS = `#version 300 es
+precision highp float;
+layout(location=0) in vec2 aPos;
+layout(location=1) in vec2 aST;
+layout(location=2) in float aLen;
+layout(location=3) in float aR;
+layout(location=4) in vec3 aCol;
+uniform vec2 uScene;
+out vec2 vST; out float vLen; out float vR; out vec3 vCol;
+void main(){
+  vec2 p = aPos / uScene;
+  gl_Position = vec4(p.x * 2. - 1., 1. - p.y * 2., 0., 1.);
+  vST = aST; vLen = aLen; vR = aR; vCol = aCol;
+}`;
+
+/* — terrain: GPU-instanced wire mesh, heights from hashed value-noise — */
+const TERRAIN_VS = `#version 300 es
+precision highp float;
+layout(location=0) in vec2 aCorner;   // x: which end (0/1)  y: side (-1/+1)
+layout(location=1) in vec3 aInst;     // col, row, dir (0 = along z, 1 = along x)
+uniform vec2  uScene;
+uniform float uU, uTravel, uF, uCamH, uHor, uRoll, uSway, uAmp, uDx, uDz, uCols, uZ0, uAlpha;
+uniform vec3  uColor;
+out vec2 vST; out float vLen; out float vR; out vec3 vCol;
+
+float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
+float vn(vec2 p){
+  vec2 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
+  return mix(mix(hash(i), hash(i + vec2(1,0)), f.x), mix(hash(i + vec2(0,1)), hash(i + vec2(1,1)), f.x), f.y);
+}
+float hgt(float x, float zw){
+  float ax   = abs(x);
+  float mask = smoothstep(9., 36., ax);
+  float n    = vn(vec2(x * .10, zw * .10)) * .55 + vn(vec2(x * .23 + 7., zw * .23)) * .30 + vn(vec2(x * .55, zw * .55 + 3.)) * .15;
+  float ridge = 1. - abs(2. * n - 1.);
+  return uAmp * mask * (.25 + 9. * pow(ridge, 3.));
+}
+vec3 wpos(float c, float r){
+  float rowW = (r + floor(uTravel / uDz)) * uDz;
+  float z = rowW - uTravel + uZ0;
+  float x = (c - uCols * .5) * uDx + uSway;
+  return vec3(x, hgt(x, rowW), z);
+}
+vec2 proj(vec3 w){
+  float z = max(w.z, .5);
+  vec2 s = vec2(uScene.x * .5 + w.x * uF / z, uHor * uScene.y + (uCamH - w.y) * uF / z);
+  vec2 c = uScene * .5, d = s - c;
+  float cs = cos(uRoll), sn = sin(uRoll);
+  return c + vec2(cs * d.x - sn * d.y, sn * d.x + cs * d.y);
+}
+void main(){
+  float c = aInst.x, r = aInst.y; bool alongX = aInst.z > .5;
+  vec3 w0 = wpos(c, r);
+  vec3 w1 = alongX ? wpos(c + 1., r) : wpos(c, r + 1.);
+  vec2 p0 = proj(w0), p1 = proj(w1);
+  vec2 d = p1 - p0; float len = length(d);
+  vec2 u = len > 1e-4 ? d / len : vec2(1., 0.); vec2 n = vec2(-u.y, u.x);
+  float zz = w0.z;
+  float rad = (.7 + 1.5 / (1. + zz * .06)) * uU;
+  float pad = rad + 5. * uU;
+  vec2 pos = (aCorner.x < .5 ? p0 - u * pad : p1 + u * pad) + n * pad * aCorner.y;
+  vec2 q = pos / uScene;
+  gl_Position = vec4(q.x * 2. - 1., 1. - q.y * 2., 0., 1.);
+  vST = vec2(aCorner.x < .5 ? -pad : len + pad, pad * aCorner.y);
+  vLen = len; vR = rad;
+  float fog  = 1. - smoothstep(34., 88., zz);
+  float nearF = smoothstep(uZ0 - 2., uZ0 + 3., zz);
+  float spacing = alongX ? abs(proj(wpos(c, r + 1.)).y - p0.y) : uDx * uF / max(zz, .5);
+  float lod = smoothstep(2.6, 9., spacing);
+  float edge = alongX ? 1. : 1.;
+  float bright = .22 + .78 * (1. - smoothstep(16., 62., zz));
+  bright *= .9 + .3 * smoothstep(1., 7., w0.y);   // peaks glow a little hotter
+  vCol = uColor * uAlpha * fog * nearF * lod * bright * edge;
+}`;
+
+/* — fullscreen helpers — */
+const FS_VS = `#version 300 es
+out vec2 vUV;
+void main(){ vec2 p = vec2((gl_VertexID << 1) & 2, gl_VertexID & 2); vUV = p; gl_Position = vec4(p * 2. - 1., 0., 1.); }`;
+
+const TRAIL_FS = `#version 300 es
+precision highp float; in vec2 vUV; out vec4 o;
+uniform sampler2D uPrev, uScene; uniform float uDecay;
+void main(){ o = vec4(max(texture(uPrev, vUV).rgb * uDecay, texture(uScene, vUV).rgb), 1.); }`;
+
+const HUD_FS = `#version 300 es
+precision highp float; in vec2 vUV; out vec4 o;
+uniform sampler2D uHud; uniform float uGain;
+void main(){ o = vec4(texture(uHud, vec2(vUV.x, 1. - vUV.y)).rgb * uGain, 1.); }`;
+
+const DOWN_FS = `#version 300 es
+precision highp float; in vec2 vUV; out vec4 o;
+uniform sampler2D uTex; uniform vec2 uTexel;
+void main(){
+  vec3 c = texture(uTex, vUV + uTexel * vec2(-.5, -.5)).rgb + texture(uTex, vUV + uTexel * vec2(.5, -.5)).rgb
+         + texture(uTex, vUV + uTexel * vec2(-.5,  .5)).rgb + texture(uTex, vUV + uTexel * vec2(.5,  .5)).rgb;
+  o = vec4(c * .25, 1.);
+}`;
+
+const BLUR_FS = `#version 300 es
+precision highp float; in vec2 vUV; out vec4 o;
+uniform sampler2D uTex; uniform vec2 uDir;
+void main(){
+  vec3 c = texture(uTex, vUV).rgb * .2270270270;
+  c += (texture(uTex, vUV + uDir * 1.3846153846).rgb + texture(uTex, vUV - uDir * 1.3846153846).rgb) * .3162162162;
+  c += (texture(uTex, vUV + uDir * 3.2307692308).rgb + texture(uTex, vUV - uDir * 3.2307692308).rgb) * .0702702703;
+  o = vec4(c, 1.);
+}`;
+
+/* — the “monitor”: barrel warp, scanlines, bloom mix, tone map, grain, glitch — */
+const CRT_FS = `#version 300 es
+precision highp float; in vec2 vUV; out vec4 o;
+uniform sampler2D uBase, uB1, uB2, uB3;
+uniform vec2 uRes; uniform float uTime, uGlitch, uCurv, uBloom, uCrt;
+float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
+void main(){
+  vec2 p = vUV * 2. - 1.;
+  vec2 w = p * vec2(1. + p.y * p.y * uCurv * .55, 1. + p.x * p.x * uCurv * .85);
+  vec2 uv = w * .5 + .5;
+  // glitch: horizontal tearing bands
+  float band = floor(vUV.y * 26.);
+  float h = hash(vec2(band, floor(uTime * 24.)));
+  uv.x += uGlitch * step(.58, h) * (h - .5) * .16;
+  float inside = step(abs(w.x), 1.) * step(abs(w.y), 1.);
+  float edgeSoft = (1. - smoothstep(.985, 1., abs(w.x))) * (1. - smoothstep(.985, 1., abs(w.y)));
+  float ca = (.0006 + uGlitch * .006) * uCrt;
+  vec2 cdir = (uv - .5) * ca * 6.;
+  vec3 base = vec3(texture(uBase, uv + cdir).r, texture(uBase, uv).g, texture(uBase, uv - cdir).b);
+  vec3 bl = texture(uB1, uv).rgb * .50 + texture(uB2, uv).rgb * .75 + texture(uB3, uv).rgb * 1.00;
+  vec3 hdr = base + bl * uBloom;
+  // monitor behaviour
+  float fl = 1. + (hash(vec2(floor(uTime * 60.), 3.1)) - .5) * .03 * uCrt;
+  float roll = 1. + .045 * sin(vUV.y * 4.2 - uTime * .6) * uCrt;
+  hdr *= fl * roll * (1. + uGlitch * .8);
+  vec3 m = 1. - exp(-hdr * 1.35);
+  float l = dot(m, vec3(.30, .59, .11));
+  m += vec3(1., .88, .68) * pow(l, 3.) * .12;                       // hot cores go pale
+  float period = clamp(uRes.y / 540., 2., 4.);
+  float sl = .5 + .5 * cos(gl_FragCoord.y * 6.28318 / period);
+  m *= mix(1., .80 + .20 * sl, uCrt);
+  m *= 1. - dot(p, p) * .22 * uCrt;
+  m += (hash(gl_FragCoord.xy + fract(uTime) * 91.7) - .5) * .028 * uCrt;
+  m = max(m, 0.) * mix(1., inside * edgeSoft, uCrt);
+  o = vec4(m, 1.);
+}`;
+
+/* ───────────────────────── GPU objects ───────────────────────── */
+const progBatch   = mkProg(BATCH_VS, CAPSULE_FS);
+const progTerrain = mkProg(TERRAIN_VS, CAPSULE_FS);
+const progTrail   = mkProg(FS_VS, TRAIL_FS);
+const progHud     = mkProg(FS_VS, HUD_FS);
+const progDown    = mkProg(FS_VS, DOWN_FS);
+const progBlur    = mkProg(FS_VS, BLUR_FS);
+const progCrt     = mkProg(FS_VS, CRT_FS);
+
+const vaoEmpty = gl.createVertexArray();
+
+// batch VAO / VBO (interleaved: x y s t len r R G B)
+const STRIDE = 9, MAXSEG = 14000;
+const batch = new Float32Array(MAXSEG * 6 * STRIDE);
+let bn = 0;
+const vaoBatch = gl.createVertexArray(), vboBatch = gl.createBuffer();
+gl.bindVertexArray(vaoBatch);
+gl.bindBuffer(gl.ARRAY_BUFFER, vboBatch);
+gl.bufferData(gl.ARRAY_BUFFER, batch.byteLength, gl.DYNAMIC_DRAW);
+[[0, 2, 0], [1, 2, 2], [2, 1, 4], [3, 1, 5], [4, 3, 6]].forEach(([loc, n, off]) => {
+  gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, n, gl.FLOAT, false, STRIDE * 4, off * 4);
+});
+
+// terrain VAO (static corner quad + static instance grid)
+const ROWS = 64, COLS = 160, DX = .8, DZ = 1.4, Z0 = 14;
+const vaoTerrain = gl.createVertexArray();
+gl.bindVertexArray(vaoTerrain);
+const vboCorner = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, vboCorner);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0, -1, 0, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+const inst = new Float32Array(ROWS * COLS * 2 * 3);
+{ let k = 0; for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+  if (r < ROWS - 1) { inst[k++] = c; inst[k++] = r; inst[k++] = 0; } else { inst[k++] = c; inst[k++] = r; inst[k++] = 0; }
+  inst[k++] = c; inst[k++] = r; inst[k++] = 1;
+} }
+const TERRAIN_N = ROWS * COLS * 2;
+const vboInst = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, vboInst);
+gl.bufferData(gl.ARRAY_BUFFER, inst, gl.STATIC_DRAW);
+gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 0, 0); gl.vertexAttribDivisor(1, 1);
+gl.bindVertexArray(null);
+
+// textures / targets
+function mkTex(w, h, internal, type, filter = gl.LINEAR) {
+  const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+  gl.texImage2D(gl.TEXTURE_2D, 0, internal, w, h, 0, gl.RGBA, type, null);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filter); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, filter);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  return t;
+}
+function mkTarget(w, h) {
+  w = Math.max(2, w | 0); h = Math.max(2, h | 0);
+  let tex = mkTex(w, h, FMT.internal, FMT.type);
+  let fb = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+  if (gl.checkFramebufferStatus(gl.FRAMEBUFFER) !== gl.FRAMEBUFFER_COMPLETE && FMT.type !== gl.UNSIGNED_BYTE) {
+    FMT = { internal: gl.RGBA8, type: gl.UNSIGNED_BYTE };                 // half-float not renderable → fall back
+    tex = mkTex(w, h, FMT.internal, FMT.type);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+  }
+  return { tex, fb, w, h };
+}
+const hudTex = mkTex(2, 2, gl.RGBA8, gl.UNSIGNED_BYTE);
+const hudCanvas = document.createElement('canvas');
+const hx = hudCanvas.getContext('2d');
+
+let SW = 0, SH = 0, CW = 0, CH = 0, u = 1;
+let T = null; // render targets
+function freeTargets() {
+  if (!T) return;
+  for (const t of [T.scene, ...T.trail, T.d1, T.a1, T.d2, T.a2, T.d3, T.a3]) { gl.deleteTexture(t.tex); gl.deleteFramebuffer(t.fb); }
+}
+function allocTargets() {
+  freeTargets();
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  CW = Math.max(2, Math.floor(innerWidth * dpr)); CH = Math.max(2, Math.floor(innerHeight * dpr));
+  canvas.width = CW; canvas.height = CH;
+  SH = Math.min(CH, TARGET_H); SW = Math.round(SH * CW / CH); u = SH / 1080;
+  T = {
+    scene: mkTarget(SW, SH), trail: [mkTarget(SW, SH), mkTarget(SW, SH)],
+    d1: mkTarget(SW / 2, SH / 2), a1: mkTarget(SW / 2, SH / 2),
+    d2: mkTarget(SW / 4, SH / 4), a2: mkTarget(SW / 4, SH / 4),
+    d3: mkTarget(SW / 8, SH / 8), a3: mkTarget(SW / 8, SH / 8),
+  };
+  for (const t of [T.trail[0], T.trail[1]]) { gl.bindFramebuffer(gl.FRAMEBUFFER, t.fb); gl.clearColor(0, 0, 0, 1); gl.clear(gl.COLOR_BUFFER_BIT); }
+  hudCanvas.width = SW; hudCanvas.height = SH; hudDirty = true;
+}
+
+/* ───────────────────────── vector “pen” (writes capsules into the batch) ───────────────────────── */
+function seg(x1, y1, x2, y2, r, c, a) {
+  if (a <= 0.002 || (bn + 6 * STRIDE) > batch.length) return;
+  let dx = x2 - x1, dy = y2 - y1; const len = Math.hypot(dx, dy);
+  let ux = 1, uy = 0; if (len > 1e-4) { ux = dx / len; uy = dy / len; }
+  const nx = -uy, ny = ux, pad = r + 5 * u;
+  const ax = x1 - ux * pad, ay = y1 - uy * pad, bx = x2 + ux * pad, by = y2 + uy * pad;
+  const cr = c[0] * a, cg = c[1] * a, cb = c[2] * a;
+  const s0 = -pad, s1 = len + pad;
+  const v = (x, y, s, t) => {
+    batch[bn++] = x; batch[bn++] = y; batch[bn++] = s; batch[bn++] = t; batch[bn++] = len; batch[bn++] = r;
+    batch[bn++] = cr; batch[bn++] = cg; batch[bn++] = cb;
+  };
+  v(ax - nx * pad, ay - ny * pad, s0, -pad); v(ax + nx * pad, ay + ny * pad, s0, pad); v(bx - nx * pad, by - ny * pad, s1, -pad);
+  v(bx - nx * pad, by - ny * pad, s1, -pad); v(ax + nx * pad, ay + ny * pad, s0, pad); v(bx + nx * pad, by + ny * pad, s1, pad);
+}
+const dot = (x, y, r, c, a) => seg(x, y, x, y, r, c, a);
+function circle(cx, cy, rad, r, c, a, a0 = 0, a1 = TAU) {
+  const n = Math.max(12, Math.min(120, Math.ceil(rad * Math.abs(a1 - a0) / 10)));
+  let px = cx + Math.cos(a0) * rad, py = cy + Math.sin(a0) * rad;
+  for (let i = 1; i <= n; i++) {
+    const th = a0 + (a1 - a0) * i / n, x = cx + Math.cos(th) * rad, y = cy + Math.sin(th) * rad;
+    seg(px, py, x, y, r, c, a); px = x; py = y;
+  }
+}
+function dash(x1, y1, x2, y2, r, c, a, d, g) {
+  const L = Math.hypot(x2 - x1, y2 - y1); if (L < 1) return;
+  const ux = (x2 - x1) / L, uy = (y2 - y1) / L;
+  for (let s = 0; s < L; s += d + g) { const e = Math.min(s + d, L); seg(x1 + ux * s, y1 + uy * s, x1 + ux * e, y1 + uy * e, r, c, a); }
+}
+function tri(ax, ay, bx, by, cx, cy, r, c, a, fill) {
+  seg(ax, ay, bx, by, r, c, a); seg(bx, by, cx, cy, r, c, a); seg(cx, cy, ax, ay, r, c, a);
+  if (fill) for (let k = 1; k < fill; k++) { const t = k / fill; seg(ax, ay, bx + (cx - bx) * t, by + (cy - by) * t, r, c, a * .9); }
+}
+function arrowHead(tx, ty, ux, uy, size, r, c, a) {
+  const nx = -uy, ny = ux, L = size, hw = size * .38;
+  tri(tx, ty, tx - ux * L + nx * hw, ty - uy * L + ny * hw, tx - ux * L - nx * hw, ty - uy * L - ny * hw, r, c, a, 6);
+}
+function brackets(cx, cy, s, r, c, a) {
+  const k = s * .38;
+  for (const [sx, sy] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) {
+    seg(cx + sx * s, cy + sy * s, cx + sx * (s - k), cy + sy * s, r, c, a);
+    seg(cx + sx * s, cy + sy * s, cx + sx * s, cy + sy * (s - k), r, c, a);
+  }
+}
+const CUBE_V = [[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
+const CUBE_E = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+function cube(cx, cy, s, ax, ay, az, r, c, a) {
+  const ca = Math.cos(ax), sa = Math.sin(ax), cb = Math.cos(ay), sb = Math.sin(ay), cc = Math.cos(az), sc = Math.sin(az);
+  const P = CUBE_V.map(([x, y, z]) => {
+    const y1 = y * ca - z * sa, z1 = y * sa + z * ca;
+    const x2 = x * cb + z1 * sb, z2 = -x * sb + z1 * cb;
+    const x3 = x2 * cc - y1 * sc, y3 = x2 * sc + y1 * cc;
+    const k = 4 / (4 + z2 * .9); return [cx + x3 * s * k, cy + y3 * s * k];
+  });
+  for (const [i, j] of CUBE_E) seg(P[i][0], P[i][1], P[j][0], P[j][1], r, c, a);
+}
+
+/* ───────────────────────── scene logic ───────────────────────── */
+const S = { dt: 1 / 30, t: 0, mode: SCENE === 'storm' ? 'storm' : 'nav', modeT: 0, modeDur: R(55, 75), glitch: 0, gT: -1, gSwap: true, spawnT: .8, actors: [], travel: 0, micro: R(14, 26) };
+const drift = { x: 0, y: 0 };
+let hudDirty = true, hudNext = 0;
+
+// persistent bits (seeded once)
+const stars = Array.from({ length: 150 }, () => ({ x: rnd(), y: rnd() * .62, r: R(.7, 1.9), ph: R(0, TAU), sp: R(.4, 1.4), b: R(.25, .8) }));
+const nodes = Array.from({ length: 15 }, (_, i) => ({ ax: R(.22, .58), ay: R(.18, .44), fx: R(.06, .17), fy: R(.05, .15), px: R(0, TAU), py: R(0, TAU), bokeh: i % 3 === 0 ? R(16, 34) : 0 }));
+const motes = Array.from({ length: 16 }, () => spawnMote(true));
+const strays = Array.from({ length: 8 }, () => ({ x: R(.05, .95), y: R(.05, .95), a: R(0, TAU), l: R(.12, .38), vx: R(-.012, .012), vy: R(-.01, .01), va: R(-.05, .05) }));
+function spawnMote(init) {
+  const a = R(0, TAU), d = init ? R(.02, .6) : R(.01, .05);
+  return { a, d, s: R(.008, .028), rot: R(0, TAU), vr: R(-1.2, 1.2), v: R(.04, .12) };
+}
+
+function env(age, dur, fi = .35, fo = 1.2) { return clamp(age / fi) * clamp((dur - age) / fo); }
+
+function spawnActor() {
+  const W = SW, H = SH, kinds = ['fan', 'fan', 'cube', 'cube', 'lock'];
+  const count = k => S.actors.filter(a => a.kind === k).length;
+  let kind = kinds[(rnd() * kinds.length) | 0];
+  if ((kind === 'fan' && count('fan') >= 2) || (kind === 'cube' && count('cube') >= 3) || (kind === 'lock' && count('lock') >= 1)) return;
+  const A = { kind, t0: S.t };
+  const px = () => R(.2, .8) * W, py = () => R(.16, .5) * H;
+  if (kind === 'fan') {
+    A.dur = R(9, 14); const P = { x: R(.24, .52) * W, y: R(.30, .50) * H };
+    A.P = P; A.T = [];
+    const n = 2 + ((rnd() * 3) | 0), green = (rnd() * n) | 0;
+    for (let i = 0; i < n; i++) {
+      const toRight = rnd() < .72 ? 1 : -1;
+      A.T.push({ x: clamp(P.x + toRight * R(.12, .36) * W, .14 * W, .86 * W), y: clamp(P.y - R(-.02, .30) * H, .17 * H, .56 * H), vx: R(-7, 7), vy: R(-6, 6), g: i === green, delay: i * R(.3, .5) });
+    }
+    A.far = { x: clamp(P.x + R(.1, .3) * W, .2 * W, .9 * W), y: R(.12, .3) * H };
+  } else if (kind === 'cube') {
+    A.dur = R(8, 13); A.c = { x: px(), y: R(.3, .55) * H, vx: R(-9, 9), vy: R(-5, 5) };
+    A.s = R(46, 92); A.rx = R(0, TAU); A.ry = R(0, TAU); A.rz = R(0, TAU); A.wx = R(.25, .6); A.wy = R(.3, .7); A.wz = R(.1, .4);
+  } else {
+    A.dur = R(3.4, 4.6); A.c = { x: px(), y: R(.2, .5) * H }; A.r1 = R(.12, .2) * H;
+  }
+  S.actors.push(A);
+}
+
+function switchMode() {
+  S.mode = S.mode === 'nav' ? 'storm' : 'nav';
+  S.modeT = 0; S.modeDur = S.mode === 'nav' ? R(55, 80) : R(26, 42);
+  S.actors.length = 0; S.spawnT = .3; hudDirty = true;
+}
+function startGlitch() { S.gT = S.t; S.gSwap = true; }
+
+function update(dt) {
+  S.dt = dt; S.t += dt; S.modeT += dt;
+  S.travel += dt * (S.mode === 'nav' ? 2.6 : 1.5);
+  drift.x = Math.sin(S.t * .011) * 9 * u; drift.y = Math.cos(S.t * .0137) * 7 * u;     // slow pixel-shift against burn-in
+  if (SCENE === 'both' && S.gT < 0 && S.modeT > S.modeDur) { S.gT = S.t; S.gSwap = false; }
+  if (S.gT >= 0) {
+    const x = S.t - S.gT; S.glitch = Math.sin(clamp(x / .85) * Math.PI) * (S.gSwap ? .45 : 1);
+    if (!S.gSwap && x > .34) { S.gSwap = true; switchMode(); }
+    if (x > .85) { S.gT = -1; S.glitch = 0; }
+  } else {
+    S.micro -= dt; if (S.micro < 0) { S.micro = R(16, 34); S.gT = S.t; S.gSwap = true; }
+    S.glitch = 0;
+  }
+  if (S.mode === 'nav') {
+    S.spawnT -= dt; if (S.spawnT < 0) { S.spawnT = R(2.2, 4.6); spawnActor(); }
+    S.actors = S.actors.filter(a => S.t - a.t0 < a.dur);
+  }
+  if (performance.now() > hudNext) { hudDirty = true; }
+}
+
+/* ───────────────────────── drawing the scene (JS side) ───────────────────────── */
+function drawNav(t) {
+  const W = SW, H = SH, C = pal;
+  // stars
+  for (const s of stars) {
+    const tw = .65 + .35 * Math.sin(t * s.sp + s.ph);
+    dot(s.x * W, s.y * H, s.r * u, C.main, s.b * tw * .8);
+  }
+  // actors
+  for (const A of S.actors) {
+    const age = S.t - A.t0, e = env(age, A.dur);
+    if (A.kind === 'fan') {
+      const P = A.P;
+      dot(P.x, P.y, 6.5 * u, C.hot, .95 * e); circle(P.x, P.y, 15 * u, 1.1 * u, C.main, .5 * e);
+      // dashed constellation, like the far corner of the console
+      const F = A.far, p = easeOut((age - .2) / 1.2);
+      if (p > 0) {
+        const pts = [[F.x, F.y], [F.x + 130 * u, F.y + 24 * u], [F.x + 74 * u, F.y + 130 * u]];
+        for (let i = 0; i < 3; i++) { const a = pts[i], b = pts[(i + 1) % 3]; dash(a[0], a[1], a[0] + (b[0] - a[0]) * p, a[1] + (b[1] - a[1]) * p, 1 * u, C.alt, .55 * e, 9 * u, 7 * u); }
+        for (const q of pts) dot(q[0], q[1], 2.4 * u, C.alt, .7 * e * p);
+      }
+      for (const Tg of A.T) {
+        const pr = easeOut((age - .5 - Tg.delay) / .85); if (pr <= 0) continue;
+        const tx = Tg.x + Tg.vx * age * u, ty = Tg.y + Tg.vy * age * u;
+        const ex = P.x + (tx - P.x) * pr, ey = P.y + (ty - P.y) * pr;
+        const L = Math.hypot(tx - P.x, ty - P.y), ux = (tx - P.x) / L, uy = (ty - P.y) / L;
+        const col = Tg.g ? C.alt : C.main, w = (Tg.g ? 2.8 : 1.9) * u;
+        seg(P.x, P.y, ex, ey, w, col, (Tg.g ? 1.05 : .9) * e);
+        if (pr > .9) arrowHead(ex, ey, ux, uy, (Tg.g ? 30 : 26) * u, 1.3 * u, col, e);
+        if (Tg.g && pr > .5) brackets(ex, ey, 34 * u, 1.3 * u, C.alt, .85 * e * sstep(.5, 1, pr));
+        if (!Tg.g && pr > .96) dot(ex - ux * 60 * u, ey - uy * 60 * u, 3.4 * u, C.hot, .75 * e);
+      }
+    } else if (A.kind === 'cube') {
+      const cx = A.c.x + A.c.vx * age * u, cy = A.c.y + A.c.vy * age * u, sc = A.s * u * (.85 + .15 * easeOut(age / 1.2));
+      cube(cx, cy, sc, A.rx + A.wx * age, A.ry + A.wy * age, A.rz + A.wz * age, 1.2 * u, C.alt, .85 * e);
+    } else {
+      const k = easeOut(age / 1.5), rad = lerp(14 * u, A.r1, k), f = clamp((A.dur - age) / 1.4) * clamp(age / .2);
+      circle(A.c.x, A.c.y, rad, 1.2 * u, C.alt, .9 * f);
+      circle(A.c.x, A.c.y, rad * .62, 1.1 * u, C.alt, .55 * f);
+      circle(A.c.x, A.c.y, rad, 6 * u, C.alt, .14 * f);
+      dot(A.c.x, A.c.y, 3.2 * u, C.alt, .95 * f);
+    }
+  }
+  // HUD lines (ruler, compass tape, radar discs) — drift against burn-in
+  const ox = drift.x, oy = drift.y;
+  const rx = .115 * W + ox, y0 = .165 * H + oy, y1 = .80 * H + oy;
+  seg(rx, y0, rx, y1, 1 * u, C.main, .32);
+  for (let i = 0, y = y0; y <= y1; y += .0135 * H, i++) { const mj = i % 4 === 0; seg(rx, y, rx - (mj ? 17 : 8) * u, y, 1 * u, C.main, mj ? .75 : .4); }
+  const my = lerp(y0, y1, .5 + .32 * Math.sin(t * .13));
+  tri(rx + 10 * u, my, rx + 22 * u, my - 7 * u, rx + 22 * u, my + 7 * u, 1 * u, C.main, .8, 0);
+  const cy2 = .088 * H + oy, cx0 = .31 * W + ox, cx1 = .69 * W + ox, step = .0098 * W, shift = t * 12 * u;
+  seg(cx0, cy2, cx1, cy2, 1 * u, C.main, .3);
+  for (let k = 0; k * step + cx0 <= cx1 + step; k++) {
+    const x = cx0 + k * step - (shift % step); if (x < cx0 || x > cx1) continue;
+    const idx = k + Math.floor(shift / step), mj = idx % 5 === 0;
+    seg(x, cy2, x, cy2 + (mj ? 15 : 7) * u, 1 * u, C.main, mj ? .8 : .45);
+  }
+  const mc = (cx0 + cx1) / 2;
+  tri(mc - 8 * u, cy2 - 12 * u, mc + 8 * u, cy2 - 12 * u, mc, cy2 - 2 * u, 1.1 * u, C.main, .9, 0);
+  for (const [fx, fy, fr, ph] of [[.365, .235, .115, 0], [.545, .215, .098, 1.7]]) {
+    const cx = fx * W + ox, cy = fy * H + oy, rr = fr * H;
+    circle(cx, cy, rr, 1 * u, C.main, .22);
+    const an = t * .35 + ph; seg(cx, cy, cx + Math.cos(an) * rr, cy + Math.sin(an) * rr, 1 * u, C.main, .28);
+    dot(cx + Math.cos(an * .7 + 2) * rr * .55, cy + Math.sin(an * .7 + 2) * rr * .55, 2.2 * u, C.alt, .7);
+  }
+}
+
+function drawStorm(t) {
+  const W = SW, H = SH, C = pal, cx = W / 2, cy = H * .47;
+  const zoom = 1 + .07 * Math.sin(t * .21), rot = .06 * Math.sin(t * .09);
+  const cr = Math.cos(rot), sr = Math.sin(rot);
+  const tf = (x, y) => { const dx = (x - cx) * zoom, dy = (y - cy) * zoom; return [cx + dx * cr - dy * sr, cy + dx * sr + dy * cr]; };
+  // concentric green rings
+  const pulse = 1 + .012 * Math.sin(t * 1.3);
+  circle(cx, cy, .075 * H * pulse, 1.2 * u, C.alt, .55);
+  circle(cx, cy, .088 * H * pulse, 1.0 * u, C.alt, .3);
+  circle(cx, cy, .265 * H * pulse, 1.5 * u, C.alt, .85);
+  circle(cx, cy, .30 * H, 1.2 * u, C.alt, .28);
+  circle(cx, cy, .445 * H * pulse, 1.2 * u, C.alt, .6);
+  circle(cx, cy, .74 * H, 1.1 * u, C.alt, .3, t * .2, t * .2 + 1.7 * Math.PI);
+  circle(cx, cy, .92 * H, 1.0 * u, C.alt, .22, -t * .12, -t * .12 + 1.2 * Math.PI);
+  // plexus of hot amber polylines, with soft bokeh at the joints
+  const P = nodes.map(n => tf(cx + Math.sin(n.fx * t + n.px) * n.ax * W, cy + Math.sin(n.fy * t + n.py) * n.ay * H));
+  for (let i = 0; i < P.length - 1; i++) {
+    const a = P[i], b = P[i + 1];
+    seg(a[0], a[1], b[0], b[1], 2.3 * u, C.hot, .92);
+    seg(a[0] + 3 * u, a[1] - 2 * u, b[0] + 3 * u, b[1] - 2 * u, 1 * u, C.main, .55);
+  }
+  for (let i = 0; i < P.length - 3; i += 2) { const a = P[i], b = P[i + 3]; seg(a[0], a[1], b[0], b[1], 1.1 * u, C.main, .5); }
+  nodes.forEach((n, i) => {
+    const p = P[i]; circle(p[0], p[1], 5.5 * u, 1.1 * u, C.hot, .9);
+    if (n.bokeh) { const bs = n.bokeh * u * (1 + .15 * Math.sin(t * 1.2 + i)); dot(p[0], p[1], bs, C.main, .24); circle(p[0], p[1], bs, 1 * u, C.main, .22); }
+  });
+  // green stray vectors
+  for (const s of strays) {
+    s.x += s.vx * S.dt; s.y += s.vy * S.dt; s.a += s.va * S.dt;
+    if (s.x < -.1 || s.x > 1.1) s.vx *= -1; if (s.y < -.1 || s.y > 1.1) s.vy *= -1;
+    const a = tf(s.x * W, s.y * H), l = s.l * W * .5;
+    const bx = a[0] + Math.cos(s.a) * l, by = a[1] + Math.sin(s.a) * l;
+    seg(a[0], a[1], bx, by, 1.3 * u, C.alt, .8); dot(a[0], a[1], 2.8 * u, C.alt, .9); dot(bx, by, 2.2 * u, C.alt, .7);
+  }
+  // little triangles drifting outwards
+  for (const m of motes) {
+    m.d += m.v * S.dt * (.5 + m.d); m.rot += m.vr * S.dt;
+    if (m.d > .75) Object.assign(m, spawnMote(false));
+    const x = cx + Math.cos(m.a) * m.d * W * .62, y = cy + Math.sin(m.a) * m.d * H * .9, sz = m.s * H * (.4 + m.d * 1.5);
+    const p = tf(x, y), f = sstep(0, .08, m.d) * (1 - sstep(.55, .75, m.d));
+    const pts = [0, 1, 2].map(k => [p[0] + Math.cos(m.rot + k * TAU / 3) * sz, p[1] + Math.sin(m.rot + k * TAU / 3) * sz]);
+    tri(pts[0][0], pts[0][1], pts[1][0], pts[1][1], pts[2][0], pts[2][1], 1.1 * u, C.hot, .75 * f, 0);
+  }
+}
+
+/* ───────────────────────── HUD text layer (2D canvas → texture) ───────────────────────── */
+const FONT = '"JetBrains Mono","Noto Sans Mono CJK JP","Yu Gothic UI","Hiragino Sans","Noto Sans CJK JP",monospace';
+const css = (c, a = 1) => `rgba(${Math.round(Math.min(1, c[0] * 1.05) * 255)},${Math.round(Math.min(1, c[1] * 1.05) * 255)},${Math.round(Math.min(1, c[2] * 1.05) * 255)},${a})`;
+function drawHUD() {
+  const W = SW, H = SH, C = pal, t = S.t;
+  hx.setTransform(1, 0, 0, 1, 0, 0); hx.clearRect(0, 0, W, H);
+  hx.save(); hx.translate(drift.x, drift.y);
+  hx.textBaseline = 'alphabetic';
+  const f = px => `${(px * u).toFixed(1)}px ${FONT}`;
+  // brand corner — always there
+  hx.font = f(19); hx.fillStyle = 'rgba(214,56,56,.92)'; hx.fillText('kappa.yashi', .095 * W, .085 * H);
+  hx.font = f(15); hx.fillStyle = css(C.dim, .95); hx.fillText('河童 野史  ·  underground fanzine', .095 * W, .085 * H + 22 * u);
+  if (S.mode === 'nav') {
+    hx.fillStyle = css(C.main, .85); hx.font = f(13);
+    const rx = .115 * W;
+    const labels = ['GBK', '8', '6', '4', '2', '0', '2', '4', '6'];
+    for (let i = 0, y = .165 * H; y <= .80 * H && i < 40; y += .0135 * H * 4, i++) { hx.textAlign = 'right'; hx.fillText(i === 0 ? 'KY' : String((18 - i * 2 + 40) % 10), rx - 24 * u, y + 5 * u); }
+    hx.textAlign = 'center'; hx.font = f(14); hx.fillStyle = css(C.main, .95);
+    const hdg = ((55 + t * .8) % 360 + 360) % 360;
+    hx.fillText(String(Math.floor(hdg)).padStart(3, '0') + '°', W / 2 + 28 * u, .088 * H - 22 * u);
+    hx.fillStyle = css(C.alt, .9); hx.fillText('E', W * .625, .088 * H + 36 * u);
+    // right-hand telemetry panel
+    const px = .70 * W, py = .125 * H, pw = .195 * W, ph = .165 * H;
+    hx.textAlign = 'left'; hx.strokeStyle = css(C.main, .75); hx.lineWidth = 1.4 * u; hx.strokeRect(px, py, pw, ph);
+    hx.fillStyle = css(C.main, .18); hx.fillRect(px, py, pw, 22 * u);
+    hx.fillStyle = css(C.hot, .95); hx.font = f(13); hx.fillText('NAV / 河童', px + 10 * u, py + 16 * u);
+    hx.textAlign = 'right'; hx.fillText('SEQ ' + String(Math.floor(t * 3.1) % 100000).padStart(5, '0'), px + pw - 10 * u, py + 16 * u);
+    hx.textAlign = 'left'; hx.font = f(12);
+    const rows = [['VEL', .55 + .35 * Math.sin(t * .31)], ['ALT', .4 + .3 * Math.sin(t * .17 + 1)], ['SYS', .7 + .2 * Math.sin(t * .23 + 2)], ['LNK', .3 + .5 * Math.abs(Math.sin(t * .11))]];
+    rows.forEach(([l, v], i) => {
+      const y = py + 44 * u + i * 24 * u;
+      hx.fillStyle = css(C.main, .85); hx.fillText(l, px + 12 * u, y);
+      hx.strokeStyle = css(C.main, .6); hx.lineWidth = 1 * u; hx.strokeRect(px + 56 * u, y - 10 * u, pw - 120 * u, 11 * u);
+      hx.fillStyle = css(C.hot, .8); hx.fillRect(px + 58 * u, y - 8 * u, (pw - 124 * u) * clamp(v), 7 * u);
+      hx.fillStyle = css(C.main, .85); hx.textAlign = 'right'; hx.fillText((v * 100).toFixed(0).padStart(3, ' '), px + pw - 10 * u, y); hx.textAlign = 'left';
+    });
+  } else {
+    hx.textAlign = 'left'; hx.font = f(13); hx.fillStyle = css(C.alt, .85);
+    hx.fillText('VECTOR STORM', .095 * W, .085 * H + 50 * u);
+    hx.fillStyle = css(C.dim, .95); hx.fillText(`Δ ${(Math.sin(t * .2) * 12).toFixed(3)}  /  ${(Math.cos(t * .17) * 9).toFixed(3)}`, .095 * W, .085 * H + 70 * u);
+    hx.textAlign = 'right'; hx.fillStyle = css(C.main, .85);
+    hx.fillText('SEQ ' + String(Math.floor(t * 3.1) % 100000).padStart(5, '0'), .905 * W, .09 * H);
+  }
+  hx.restore();
+  gl.bindTexture(gl.TEXTURE_2D, hudTex);
+  gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE, hudCanvas);
+  gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+  hudDirty = false; hudNext = performance.now() + 160;
+}
+
+/* ───────────────────────── render ───────────────────────── */
+let ping = 0;
+const useProg = p => { gl.useProgram(p); return p.U; };
+function tex(unit, t) { gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, t); }
+function fsq(target, w, h) { gl.bindFramebuffer(gl.FRAMEBUFFER, target ? target.fb : null); gl.viewport(0, 0, w, h); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+
+function render(dt) {
+  if (hudDirty) drawHUD();
+  bn = 0;
+  if (S.mode === 'nav') drawNav(S.t); else drawStorm(S.t);
+
+  // 1 ── geometry into the scene buffer (additive)
+  gl.bindFramebuffer(gl.FRAMEBUFFER, T.scene.fb); gl.viewport(0, 0, SW, SH);
+  gl.clearColor(0, 0, 0, 1); gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE);
+
+  const nav = S.mode === 'nav';
+  const tp = nav ? { amp: 1, hor: .615, camH: 4, alpha: 1.0, col: pal.main, sway: Math.sin(S.t * .11) * 2.2, roll: .012 * Math.sin(S.t * .15) }
+                 : { amp: 0, hor: .72,  camH: 3.1, alpha: .62, col: pal.alt,  sway: Math.sin(S.t * .09) * 1.2, roll: .02 * Math.sin(S.t * .1) };
+  let U = useProg(progTerrain);
+  gl.uniform2f(U.uScene, SW, SH); gl.uniform1f(U.uU, u); gl.uniform1f(U.uTravel, S.travel);
+  gl.uniform1f(U.uF, 1.57 * SH); gl.uniform1f(U.uCamH, tp.camH); gl.uniform1f(U.uHor, tp.hor); gl.uniform1f(U.uRoll, tp.roll);
+  gl.uniform1f(U.uSway, tp.sway); gl.uniform1f(U.uAmp, tp.amp); gl.uniform1f(U.uDx, DX); gl.uniform1f(U.uDz, DZ);
+  gl.uniform1f(U.uCols, COLS); gl.uniform1f(U.uZ0, Z0); gl.uniform1f(U.uAlpha, tp.alpha); gl.uniform3fv(U.uColor, tp.col);
+  gl.bindVertexArray(vaoTerrain);
+  gl.drawArraysInstanced(gl.TRIANGLE_STRIP, 0, 4, TERRAIN_N);
+
+  if (bn > 0) {
+    U = useProg(progBatch); gl.uniform2f(U.uScene, SW, SH);
+    gl.bindVertexArray(vaoBatch); gl.bindBuffer(gl.ARRAY_BUFFER, vboBatch);
+    gl.bufferSubData(gl.ARRAY_BUFFER, 0, batch, 0, bn);
+    gl.drawArrays(gl.TRIANGLES, 0, bn / STRIDE);
+  }
+  // HUD text layer
+  U = useProg(progHud); tex(0, hudTex); gl.uniform1i(U.uHud, 0); gl.uniform1f(U.uGain, 1.0);
+  gl.bindVertexArray(vaoEmpty); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  gl.disable(gl.BLEND);
+
+  // 2 ── phosphor persistence: trail = max(prev · decay, scene)
+  const prev = T.trail[ping], cur = T.trail[ping ^ 1]; ping ^= 1;
+  U = useProg(progTrail); tex(0, prev.tex); tex(1, T.scene.tex);
+  gl.uniform1i(U.uPrev, 0); gl.uniform1i(U.uScene, 1); gl.uniform1f(U.uDecay, Math.exp(-dt / (crtOn ? .085 : .001)));
+  gl.bindVertexArray(vaoEmpty); fsq(cur, SW, SH);
+
+  // 3 ── bloom chain (½, ¼, ⅛)
+  const down = (src, dst) => { const Ud = useProg(progDown); tex(0, src.tex); gl.uniform1i(Ud.uTex, 0); gl.uniform2f(Ud.uTexel, 1 / src.w, 1 / src.h); fsq(dst, dst.w, dst.h); };
+  const blur = (src, dst, dx, dy) => { const Ub = useProg(progBlur); tex(0, src.tex); gl.uniform1i(Ub.uTex, 0); gl.uniform2f(Ub.uDir, dx / src.w, dy / src.h); fsq(dst, dst.w, dst.h); };
+  down(cur, T.d1); blur(T.d1, T.a1, 1, 0); blur(T.a1, T.d1, 0, 1);
+  down(T.d1, T.d2); blur(T.d2, T.a2, 1, 0); blur(T.a2, T.d2, 0, 1);
+  down(T.d2, T.d3); blur(T.d3, T.a3, 1, 0); blur(T.a3, T.d3, 0, 1);
+
+  // 4 ── the monitor
+  U = useProg(progCrt);
+  tex(0, cur.tex); tex(1, T.d1.tex); tex(2, T.d2.tex); tex(3, T.d3.tex);
+  gl.uniform1i(U.uBase, 0); gl.uniform1i(U.uB1, 1); gl.uniform1i(U.uB2, 2); gl.uniform1i(U.uB3, 3);
+  gl.uniform2f(U.uRes, CW, CH); gl.uniform1f(U.uTime, S.t); gl.uniform1f(U.uGlitch, S.glitch);
+  gl.uniform1f(U.uCurv, crtOn ? .11 : 0); gl.uniform1f(U.uBloom, .42); gl.uniform1f(U.uCrt, crtOn ? 1 : 0);
+  fsq(null, CW, CH);
+}
+
+/* ───────────────────────── loop / input ───────────────────────── */
+let last = performance.now(), paused = false;
+function tick(now) {
+  requestAnimationFrame(tick);
+  if (document.hidden || paused) { last = now; return; }
+  const minDt = 1000 / FPS - 2;
+  if (now - last < minDt) return;
+  const dt = Math.min(.1, (now - last) / 1000); last = now;
+  update(dt); render(dt);
+  if (!readySent) { readySent = true; if (IPC) IPC('log ready ' + JSON.stringify(window.__sv.info)); }
+}
+let readySent = false;
+function stepManual(dt) { update(dt); render(dt); }
+
+addEventListener('resize', () => { allocTargets(); });
+const hint = document.getElementById('hint');
+let idleTimer = 0;
+function wake() {
+  document.body.classList.remove('idle');
+  clearTimeout(idleTimer); idleTimer = setTimeout(() => document.body.classList.add('idle'), 2200);
+}
+if (SAVER) {
+  // The native wrapper hosts this page; it can't see input that the WebView swallows, so we report it.
+  document.body.classList.add('idle');
+  const t0 = performance.now(); let mx = null, my = null, acc = 0;
+  const bye = () => { if (IPC) IPC('exit'); };
+  for (const ev of ['keydown', 'mousedown', 'pointerdown', 'touchstart', 'wheel'])
+    addEventListener(ev, () => { if (performance.now() - t0 > 600) bye(); }, true);
+  addEventListener('mousemove', e => {
+    if (mx === null || performance.now() - t0 < 900) { mx = e.screenX; my = e.screenY; return; }
+    acc += Math.abs(e.screenX - mx) + Math.abs(e.screenY - my); mx = e.screenX; my = e.screenY;
+    if (acc > 40) bye();
+  }, true);
+} else if (EMBED) {
+  document.body.classList.add('idle');
+} else {
+  addEventListener('mousemove', wake);
+  hint.classList.add('on'); setTimeout(() => hint.classList.remove('on'), 6500);
+  addEventListener('keydown', e => {
+    const k = e.key.toLowerCase();
+    if (k === 'f') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.(); }
+    else if (k === 'p') { const names = Object.keys(PALETTES); palName = names[(names.indexOf(palName) + 1) % names.length]; pal = PALETTES[palName]; hudDirty = true; }
+    else if (k === 'm') { S.gT = S.t; S.gSwap = false; }
+    else if (k === 'c') { crtOn = !crtOn; }
+    else if (k === ' ') { paused = !paused; }
+    hint.classList.add('on'); setTimeout(() => hint.classList.remove('on'), 3500);
+  });
+  wake();
+}
+
+allocTargets();
+if (document.fonts && document.fonts.load) document.fonts.load('16px "JetBrains Mono"').then(() => { hudDirty = true; });
+startGlitch();   // power-on flicker
+window.__sv = { step: stepManual, S, setMode(m) { if (S.mode !== m) switchMode(); }, get info() { return { SW, SH, CW, CH, FMT: FMT.type === gl.UNSIGNED_BYTE ? 'rgba8' : 'rgba16f', seed }; } };
+if (!MANUAL) requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
