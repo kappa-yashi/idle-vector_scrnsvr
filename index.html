@@ -52,21 +52,21 @@ const TAU = Math.PI * 2;
 const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255);
 const norm = c => { const m = Math.max(...c, 1e-3); return c.map(v => v / m); };      // full brightness, same hue
 const mixW = (c, t) => c.map(v => v + (1 - v) * t);
-const theme = (main, hot, alt, dim, bg) => {
+const theme = (main, hot, alt, dim, bg, brand = main) => {
   const M = norm(hex(main)), H = norm(M.map((v, i) => v + (hex(hot)[i] - v) * .45));  // hot = main pushed toward the text colour
-  return { main: M, hot: H, alt: norm(hex(alt)), dim: hex(dim), brand: hex(main), bg: hex(bg).map(v => v * .6), pale: mixW(H, .45) };
+  return { main: M, hot: H, alt: norm(hex(alt)), dim: hex(dim), brand: hex(brand), bg: hex(bg).map(v => v * .6), pale: mixW(H, .45) };
 };
 const PALETTES = {
   amber: { main: [1.00, 0.60, 0.20], hot: [1.00, 0.84, 0.52], alt: [0.42, 1.00, 0.52], dim: [0.60, 0.36, 0.12] },
   kappa: { main: [0.80, 0.13, 0.13], hot: [1.00, 0.34, 0.28], alt: [0.72, 0.67, 0.56], dim: [0.46, 0.10, 0.10] },
   'green':         theme('#00ff66', '#66ff99', '#00ffcc', '#00aa44', '#0a120b'),   // Phosphor Green
   'dracula':       theme('#bd93f9', '#d6bbfb', '#ff79c6', '#9175cc', '#110e1b'),   // Dracula Synth
-  'mono':          theme('#eeeeee', '#ffffff', '#00e5ff', '#888888', '#0f0f0f'),   // Monochrome
+  'mono':          { ...theme('#eeeeee', '#ffffff', '#9a9a9a', '#888888', '#0f0f0f', '#ffffff'), gray: 1 },   // Monochrome: pure black & white
   'nord':          theme('#88c0d0', '#d8dee9', '#ebcb8b', '#98a2b7', '#2e3440'),   // Nord
   'tokyo-night':   theme('#7aa2f7', '#c0caf5', '#9ece6a', '#7982a9', '#1a1b26'),   // Tokyo Night
   'tokyo-storm':   theme('#7aa2f7', '#c0caf5', '#e0af68', '#8c94bc', '#24283b'),   // Tokyo Night Storm
   'gruvbox-dark':  theme('#fe8019', '#fabd2f', '#b8bb26', '#a89984', '#282828'),   // Gruvbox Dark
-  'electron-dark': theme('#6b75ff', '#ffffff', '#d9d9d9', '#a19dcd', '#121212'),   // Electron Dark
+  'electron-dark': { ...theme('#0000ff', '#4a55ff', '#2a3aff', '#a19dcd', '#121212', '#6b75ff'), pale: [.30, .36, 1] },   // Electron Dark: #0000ff leads
   'emerald':       theme('#00a313', '#d3e1c1', '#dd4646', '#8b867b', '#111111'),   // Emerald
 };
 for (const k in PALETTES) { const P = PALETTES[k]; P.bg ||= [0, 0, 0]; P.pale ||= [1, .88, .68]; P.brand ||= [.84, .22, .22]; }
@@ -227,7 +227,7 @@ void main(){
 const CRT_FS = `#version 300 es
 precision highp float; in vec2 vUV; out vec4 o;
 uniform sampler2D uBase, uB1, uB2, uB3;
-uniform vec2 uRes; uniform float uTime, uGlitch, uCurv, uBloom, uCrt; uniform vec3 uBg, uPale;
+uniform vec2 uRes; uniform float uTime, uGlitch, uCurv, uBloom, uCrt; uniform vec3 uBg, uPale; uniform float uGray;
 float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
 void main(){
   vec2 p = vUV * 2. - 1.;
@@ -258,6 +258,7 @@ void main(){
   m *= 1. - dot(p, p) * .22 * uCrt;
   m += (hash(gl_FragCoord.xy + fract(uTime) * 91.7) - .5) * .028 * uCrt;
   m = max(m, 0.) * mix(1., inside * edgeSoft, uCrt);
+  m = mix(m, vec3(dot(m, vec3(.299, .587, .114))), uGray);           // monochrome theme: no colour at all
   o = vec4(m, 1.);
 }`;
 
@@ -697,7 +698,7 @@ function render(dt) {
   gl.uniform1i(U.uBase, 0); gl.uniform1i(U.uB1, 1); gl.uniform1i(U.uB2, 2); gl.uniform1i(U.uB3, 3);
   gl.uniform2f(U.uRes, CW, CH); gl.uniform1f(U.uTime, S.t); gl.uniform1f(U.uGlitch, S.glitch);
   gl.uniform1f(U.uCurv, crtOn ? .11 : 0); gl.uniform1f(U.uBloom, .42); gl.uniform1f(U.uCrt, crtOn ? 1 : 0);
-  gl.uniform3fv(U.uBg, pal.bg); gl.uniform3fv(U.uPale, pal.pale);
+  gl.uniform3fv(U.uBg, pal.bg); gl.uniform3fv(U.uPale, pal.pale); gl.uniform1f(U.uGray, pal.gray || 0);
   fsq(null, CW, CH);
 }
 
