@@ -29,8 +29,6 @@ You don't need Rust on your PC.
 
 To publish: **Run workflow** with the *release* field filled in (e.g. `v0.1.0`; a dash like `v0.1.0-beta.1` makes it a pre-release), or push a tag like `v0.1.0`. Either builds both and creates a Release with the Windows and Linux files attached.
 
-**Free-plan note.** Keep this in its own repo, separate from the website repo. Private repos on the free plan get a monthly allowance of Actions minutes (2,000 at the time of writing; Windows minutes count about double), a public repo gets standard runners for free. One Windows-only run is roughly 10 billed minutes. A Cloudflare Pages site is built by Cloudflare, not by GitHub Actions, so its deploys don't touch that allowance.
-
 ## Install on Windows
 
 - Right-click `kappa.yashi.scr` → **Install**. Windows copies it and opens *Screen Saver Settings*; pick **kappa.yashi** and set the wait time.
