@@ -1,4 +1,4 @@
-# kappa.yashi — vector saver
+# kappa.yashi — idle-vector_scrnsvr
 
 Repo: https://github.com/kappa-yashi/idle-vector_scrnsvr
 
