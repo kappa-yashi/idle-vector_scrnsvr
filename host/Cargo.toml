@@ -1,6 +1,6 @@
 [package]
 name = "kappayashi-saver"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2021"
 description = "kappa.yashi vector screensaver host (WebView2 on Windows, WebKitGTK on Linux)"
 
