@@ -11,7 +11,11 @@ A generative screensaver in the look of the kappa.yashi vector-console clips: am
 - `host/` — the tiny native app (Rust: `tao` + `wry`) that turns the page into a real screensaver. It opens one borderless window per monitor, any key / click / real mouse movement quits, and it stores your settings in `settings.json` next to the WebView profile (`%LOCALAPPDATA%\kappayashi-saver` on Windows, `~/.local/share/kappayashi-saver` on Linux).
 - `.github/workflows/build.yml` — the GitHub Actions workflow that builds the Windows `.scr` and the Linux binary on GitHub's servers.
 
-## Get the Windows .scr
+## Download
+
+Ready-made builds are on the [Releases](https://github.com/kappa-yashi/idle-vector_scrnsvr/releases) page: `kappayashi-saver-windows-x64.zip` and `kappayashi-saver-linux-x86_64.tar.gz`. Nothing to compile.
+
+## Build it yourself
 
 You don't need Rust on your PC.
 
@@ -35,7 +39,7 @@ To test without installing: `kappa.yashi.scr /s` from a terminal (fullscreen), `
 
 ## Linux
 
-The ready-made build is in the `linux/` folder (`kappayashi-saver` + `kappayashi-idle.sh`; if the exec bit got lost, `chmod +x` both). It needs WebKitGTK 4.1 (`libwebkit2gtk-4.1-0` on Mint 22 / Ubuntu 24.04, `webkit2gtk-4.1` on Arch).
+Get `kappayashi-saver-linux-x86_64.tar.gz` from Releases (`kappayashi-saver` + `kappayashi-idle.sh`; if the exec bit got lost, `chmod +x` both). It needs WebKitGTK 4.1 (`libwebkit2gtk-4.1-0` on Mint 22 / Ubuntu 24.04, `webkit2gtk-4.1` on Arch).
 
 ```
 kappayashi-saver --saver              # run it now (one window per monitor)
@@ -58,7 +62,7 @@ Linux has no common screensaver API, so something has to start it when you go id
 ## Status
 
 - Verified: the page renders both scenes (software GL screenshots); the host builds and runs on Linux under a virtual X server — page loads over the custom protocol, settings save and are picked up by the saver, a key press or real mouse movement quits, a tiny mouse jitter does not.
-- Not verified yet: the Windows build itself (it compiles from the same code, but it was never built or run on Windows), real-GPU frame rate, real Linux desktops (X11 and Wayland), multi-monitor.
+- The Windows build compiles in GitHub Actions. Not verified yet: running it on a real Windows PC (this is a pre-release until it is), real-GPU frame rate, real Linux desktops (X11 and Wayland), multi-monitor.
 - macOS isn't covered: a real `.saver` with a WebView is unreliable on recent macOS — see the project notes.
 
 ## Page options (URL parameters)

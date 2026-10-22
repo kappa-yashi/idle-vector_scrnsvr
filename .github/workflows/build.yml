@@ -36,9 +36,12 @@ jobs:
       - name: Package
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force dist | Out-Null
-          Copy-Item host/target/release/kappayashi-saver.exe "dist/kappa.yashi.scr"
-          Copy-Item host/target/release/kappayashi-saver.exe "dist/kappayashi-saver.exe"
+          $pkg = "kappayashi-saver-windows-x64"
+          New-Item -ItemType Directory -Force $pkg, dist | Out-Null
+          Copy-Item host/target/release/kappayashi-saver.exe "$pkg/kappa.yashi.scr"
+          Copy-Item host/target/release/kappayashi-saver.exe "$pkg/kappayashi-saver.exe"
+          Copy-Item DISCLAIMER.md, README.md $pkg
+          Compress-Archive -Path "$pkg/*" -DestinationPath "dist/$pkg.zip"
       - uses: actions/upload-artifact@v4
         with:
           name: kappayashi-saver-windows
@@ -60,8 +63,11 @@ jobs:
         run: cargo build --release --locked
       - name: Package
         run: |
-          mkdir -p dist
-          cp host/target/release/kappayashi-saver dist/
+          pkg=kappayashi-saver-linux-x86_64
+          mkdir -p $pkg dist
+          cp host/target/release/kappayashi-saver linux/kappayashi-idle.sh DISCLAIMER.md README.md $pkg/
+          chmod +x $pkg/kappayashi-saver $pkg/kappayashi-idle.sh
+          tar -czf dist/$pkg.tar.gz $pkg
       - uses: actions/upload-artifact@v4
         with:
           name: kappayashi-saver-linux
@@ -80,3 +86,10 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: dist/*
+          # a tag with a dash (v0.1.0-beta.1) becomes a pre-release
+          prerelease: ${{ contains(github.ref_name, '-') }}
+          body: |
+            **Windows:** `kappayashi-saver-windows-x64.zip` → unzip to a folder you keep → right-click `kappa.yashi.scr` → Install. Unsigned: SmartScreen → More info → Run anyway. Needs WebView2 (already in Windows 11 / updated Windows 10).
+            **Linux:** `kappayashi-saver-linux-x86_64.tar.gz` → needs WebKitGTK 4.1 → `./kappayashi-saver --saver` (idle hook: see README).
+
+            Free, provided "as is", no warranty, use at your own risk — see [DISCLAIMER.md](https://github.com/${{ github.repository }}/blob/main/DISCLAIMER.md). / Δωρεάν, «ως έχει», χρήση με δική σου ευθύνη.
