@@ -46,7 +46,7 @@ jobs:
           New-Item -ItemType Directory -Force $pkg, dist | Out-Null
           Copy-Item host/target/release/kappayashi-saver.exe "$pkg/kappa.yashi.scr"
           Copy-Item host/target/release/kappayashi-saver.exe "$pkg/kappayashi-saver.exe"
-          Copy-Item DISCLAIMER.md, README.md $pkg
+          Copy-Item LICENSE.md, DISCLAIMER.md, README.md $pkg
           Compress-Archive -Path "$pkg/*" -DestinationPath "dist/$pkg.zip"
       - uses: actions/upload-artifact@v4
         with:
@@ -79,7 +79,7 @@ jobs:
         run: |
           pkg=kappayashi-saver-linux-x86_64
           mkdir -p $pkg dist
-          cp host/target/release/kappayashi-saver linux/kappayashi-idle.sh DISCLAIMER.md README.md $pkg/
+          cp host/target/release/kappayashi-saver linux/kappayashi-idle.sh LICENSE.md DISCLAIMER.md README.md $pkg/
           chmod +x $pkg/kappayashi-saver $pkg/kappayashi-idle.sh
           tar -czf dist/$pkg.tar.gz $pkg
       - uses: actions/upload-artifact@v4
@@ -108,4 +108,5 @@ jobs:
             **Windows:** `kappayashi-saver-windows-x64.zip` → unzip to a folder you keep → right-click `kappa.yashi.scr` → Install. Unsigned: SmartScreen → More info → Run anyway. Needs WebView2 (already in Windows 11 / updated Windows 10).
             **Linux:** `kappayashi-saver-linux-x86_64.tar.gz` → needs WebKitGTK 4.1 → `./kappayashi-saver --saver` (idle hook: see README).
 
+            Licence: PolyForm Noncommercial 1.0.0 — free for noncommercial use, you may change and share it, keep the credits (kappa.yashi - https://www.kappayashi.page/ · https://github.com/${{ github.repository }}/). No commercial use.
             Free, provided "as is", no warranty, use at your own risk — see [DISCLAIMER.md](https://github.com/${{ github.repository }}/blob/main/DISCLAIMER.md). / Δωρεάν, «ως έχει», χρήση με δική σου ευθύνη.

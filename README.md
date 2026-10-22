@@ -73,4 +73,16 @@ Linux has no common screensaver API, so something has to start it when you go id
 
 `?palette=amber|kappa|green|dracula|mono|nord|tokyo-night|tokyo-storm|gruvbox-dark|electron-dark|emerald` · `?scene=both|nav|storm` · `?fps=30|60` · `?h=720|1080|1440` (internal render height) · `?crt=0` · `?seed=N`. They override the saved settings; `?saver=1` and `?embed=1` are used by the host and the settings preview.
 
-Licence: not decided yet (see also [DISCLAIMER.md](DISCLAIMER.md)).
+## Licence
+
+[PolyForm Noncommercial 1.0.0](LICENSE.md). In short (the licence text is what counts):
+
+- Free for any **noncommercial** use: personal, hobby, study, non-profits, schools.
+- You may **change** it and **share** it, changed or not, also for free only.
+- **No commercial use** of any kind: no selling it, no bundling it into something paid, no use in paid client work.
+- Whoever shares it must pass on the licence and keep the credits — the two `Required Notice:` lines at the top of [LICENSE.md](LICENSE.md):
+  `kappa.yashi - https://www.kappayashi.page/` and `https://github.com/kappa-yashi/idle-vector_scrnsvr/`
+
+For commercial use, ask via https://www.kappayashi.page/.
+
+Third-party parts keep their own licences: the JetBrains Mono font embedded in the pages (SIL OFL 1.1), the Rust crates in the native host (`tao`, `wry` and their dependencies, MIT/Apache-2.0), and the Nord, Tokyo Night, Gruvbox and Retro TUI colour schemes (MIT). See also [DISCLAIMER.md](DISCLAIMER.md).
