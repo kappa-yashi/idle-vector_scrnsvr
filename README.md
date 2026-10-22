@@ -2,6 +2,9 @@
 
 Repo: https://github.com/kappa-yashi/idle-vector_scrnsvr
 
+<p><img src="docs/screenshots/amber-console.jpg" width="49%" alt="console scene, amber"> <img src="docs/screenshots/amber-storm.jpg" width="49%" alt="vector storm scene, amber"></p>
+
+
 A generative screensaver in the look of the kappa.yashi vector-console clips: amber wireframe terrain, arrows, wire cubes, radar rings, a CRT monitor. It never loops, runs at any resolution, and needs nothing from the internet.
 
 > **Disclaimer — free software, use at your own risk.** This is a free personal project, provided "as is" with no warranty of any kind. kappa.yashi and its author(s) accept no responsibility or liability, to the fullest extent the law allows, for anything that results from downloading, installing or using it (data loss, hardware or driver problems, overheating, power use, screen burn-in …). It is **not a security tool** and does not lock your computer. It contains **flickering and flashing effects** — don't use it if you are sensitive to those, or switch "crt look" off. Full text in English and Greek: [DISCLAIMER.md](DISCLAIMER.md). / *Δωρεάν λογισμικό, χρήση με δική σου ευθύνη — δες το DISCLAIMER.md.*
@@ -31,7 +34,10 @@ To publish: **Run workflow** with the *release* field filled in (e.g. `v0.1.0`; 
 ## Install on Windows
 
 - Right-click `kappa.yashi.scr` → **Install**. Windows copies it and opens *Screen Saver Settings*; pick **kappa.yashi** and set the wait time.
-- **Settings…** opens our settings window. **Preview** shows the real thing fullscreen. (The small thumbnail in that dialog stays black — we don't draw into it.)
+- **Settings…** opens our settings window (below: Windows 11). **Preview** shows the real thing fullscreen. (The small thumbnail in that dialog stays black — we don't draw into it.)
+
+  <img src="docs/screenshots/settings-windows.png" width="420" alt="settings window on Windows 11">
+
 - The file isn't code-signed, so SmartScreen may warn the first time: **More info → Run anyway**.
 - It needs the WebView2 runtime, which Windows 11 and up-to-date Windows 10 already have.
 
@@ -67,7 +73,11 @@ Linux has no common screensaver API, so something has to start it when you go id
 
 ## Colours
 
-`amber` (default, like the original clips) and `kappa` (brand red + bone), plus the dark themes of [kappayashi.page](https://kappayashi.page): Phosphor Green, Dracula Synth, Monochrome, Nord, Tokyo Night, Tokyo Night Storm, Gruvbox Dark, Electron Dark, Emerald. Pick one in the settings window. Theme credits: Nord, Tokyo Night and Gruvbox are MIT-licensed colour schemes by their authors; Phosphor Green, Dracula Synth and Monochrome come from the Retro TUI Portfolio template (MIT, © Nivin).
+`amber` (default, like the original clips) and `kappa` (brand red + bone), plus the dark themes of [kappayashi.page](https://kappayashi.page): Phosphor Green, Dracula Synth, Monochrome, Nord, Tokyo Night, Tokyo Night Storm, Gruvbox Dark, Electron Dark, Emerald. Pick one in the settings window.
+
+![the nine site themes in the console scene](docs/screenshots/themes.jpg)
+
+Theme credits: Nord, Tokyo Night and Gruvbox are MIT-licensed colour schemes by their authors; Phosphor Green, Dracula Synth and Monochrome come from the Retro TUI Portfolio template (MIT, © Nivin).
 
 ## Page options (URL parameters)
 
