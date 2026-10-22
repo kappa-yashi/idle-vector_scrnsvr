@@ -24,7 +24,7 @@ You don't need Rust on your PC.
 3. Open the **Actions** tab → **build** → **Run workflow** (Windows only by default; tick *linux* to add the Linux build). It takes ~5 minutes. The workflow never runs on its own when you commit, only when you press the button or push a `v*` tag.
 4. Open the finished run → **Artifacts** → download `kappayashi-saver-windows` → it contains `kappa.yashi.scr` and `kappayashi-saver.exe`.
 
-Pushing a tag like `v0.1.0` builds both and creates a Release with the Windows and Linux files attached.
+To publish: **Run workflow** with the *release* field filled in (e.g. `v0.1.0`; a dash like `v0.1.0-beta.1` makes it a pre-release), or push a tag like `v0.1.0`. Either builds both and creates a Release with the Windows and Linux files attached.
 
 **Free-plan note.** Keep this in its own repo, separate from the website repo. Private repos on the free plan get a monthly allowance of Actions minutes (2,000 at the time of writing; Windows minutes count about double), a public repo gets standard runners for free. One Windows-only run is roughly 10 billed minutes. A Cloudflare Pages site is built by Cloudflare, not by GitHub Actions, so its deploys don't touch that allowance.
 
