@@ -2,7 +2,9 @@ name: build
 
 # Runs ONLY when you ask it to, so ordinary commits cost no Actions minutes:
 #   - "Run workflow" button (Actions tab): Windows build only by default, tick "linux" to add the Linux one
-#   - pushing a tag like v0.1.0: Windows + Linux build, and a Release is created
+#   - "Run workflow" with a release tag filled in (e.g. v0.1.0): Windows + Linux build, the tag and a Release are created
+#   - pushing a tag like v0.1.0: same as above
+#   A tag with a dash (v0.1.0-beta.1) becomes a pre-release.
 on:
   push:
     tags: ['v*']
@@ -12,6 +14,10 @@ on:
         description: 'also build the Linux binary'
         type: boolean
         default: false
+      release:
+        description: 'publish as a Release with this tag, e.g. v0.1.0 or v0.1.0-beta.1 (empty = just build)'
+        type: string
+        default: ''
 
 concurrency:
   group: build-${{ github.ref }}
@@ -48,7 +54,7 @@ jobs:
           path: dist/*
 
   linux:
-    if: github.event_name != 'workflow_dispatch' || inputs.linux
+    if: github.event_name != 'workflow_dispatch' || inputs.linux || inputs.release != ''
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
@@ -74,7 +80,7 @@ jobs:
           path: dist/*
 
   release:
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && inputs.release != '')
     needs: [windows, linux]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -86,8 +92,10 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: dist/*
-          # a tag with a dash (v0.1.0-beta.1) becomes a pre-release
-          prerelease: ${{ contains(github.ref_name, '-') }}
+          tag_name: ${{ inputs.release || github.ref_name }}
+          target_commitish: ${{ github.sha }}
+          name: ${{ inputs.release || github.ref_name }}
+          prerelease: ${{ contains(inputs.release || github.ref_name, '-') }}
           body: |
             **Windows:** `kappayashi-saver-windows-x64.zip` → unzip to a folder you keep → right-click `kappa.yashi.scr` → Install. Unsigned: SmartScreen → More info → Run anyway. Needs WebView2 (already in Windows 11 / updated Windows 10).
             **Linux:** `kappayashi-saver-linux-x86_64.tar.gz` → needs WebKitGTK 4.1 → `./kappayashi-saver --saver` (idle hook: see README).
