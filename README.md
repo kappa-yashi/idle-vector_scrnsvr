@@ -61,8 +61,8 @@ Linux has no common screensaver API, so something has to start it when you go id
 
 ## Status
 
-- Verified: the page renders both scenes (software GL screenshots); the host builds and runs on Linux under a virtual X server — page loads over the custom protocol, settings save and are picked up by the saver, a key press or real mouse movement quits, a tiny mouse jitter does not.
-- The Windows build compiles in GitHub Actions. Not verified yet: running it on a real Windows PC (this is a pre-release until it is), real-GPU frame rate, real Linux desktops (X11 and Wayland), multi-monitor.
+- Also verified: the page renders both scenes (software GL screenshots); the host builds and runs on Linux under a virtual X server — page loads over the custom protocol, settings save and are picked up by the saver, a key press or real mouse movement quits, a tiny mouse jitter does not.
+- Verified on Windows 11: install, settings window, fullscreen saver, exit on input. Not verified yet: Windows 10, real-GPU frame rate, real Linux desktops (X11 and Wayland), multi-monitor.
 - macOS isn't covered: a real `.saver` with a WebView is unreliable on recent macOS — see the project notes.
 
 ## Page options (URL parameters)
