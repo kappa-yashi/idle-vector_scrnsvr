@@ -1,2 +1,18 @@
 host/target/
 dist/
+
+# local / agent files never tracked
+.env
+.env.*
+!.env.example
+.dev.vars
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+.cursor/
+.cursorrules
+node_modules/
+dist/
+.DS_Store
+Thumbs.db
